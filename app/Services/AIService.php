@@ -14,7 +14,7 @@ class AIService
 
     public function __construct()
     {
-        $this->apiKey = env('GEMINI_API_KEY');
+        $this->apiKey = config('services.gemini.api_key');
         // Treat dummy placeholder as no key to trigger local Sandbox mode
         if ($this->apiKey === 'your_gemini_api_key_here' || empty(trim($this->apiKey))) {
             $this->apiKey = null;
