@@ -35,7 +35,7 @@ class AIService
         $status = 'success';
         $responseContent = '';
         $tokens = str_word_count($text) + 20; // safe approximation for prompt tokens
-        $model = 'gemini-2.5-flash';
+        $model = 'gemini-1.5-flash';
 
         $prompt = "You are an automated content moderation bot. Analyze if the following message contains violence, severe vulgar language, threats, abuse, cyberbullying, or explicit hate speech. If the message is unsafe or inappropriate, reply with the single word 'BAD'. If the message is completely safe and appropriate for a children's playroom chat, reply with the single word 'SAFE'. Do not include any other words or punctuation.\n\nMessage: \"{$text}\"";
 
@@ -59,7 +59,7 @@ class AIService
         }
 
         try {
-            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$this->apiKey}", [
+            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$this->apiKey}", [
                 'contents' => [
                     [
                         'parts' => [
@@ -108,7 +108,7 @@ class AIService
         $status = 'success';
         $responseContent = '';
         $tokens = str_word_count($incomingText) + 30; // safe approximation for prompt tokens
-        $model = 'gemini-2.5-flash';
+        $model = 'gemini-1.5-flash';
 
         // Extract personalized instructions and tone from user Settings
         $tone = 'Professional';
@@ -156,7 +156,7 @@ class AIService
         }
 
         try {
-            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$this->apiKey}", [
+            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$this->apiKey}", [
                 'contents' => [
                     [
                         'parts' => [
@@ -199,7 +199,7 @@ class AIService
     {
         $startTime = microtime(true);
         $status = 'success';
-        $model = 'gemini-2.5-flash';
+        $model = 'gemini-1.5-flash';
 
         // Format message logs
         $historyText = '';
@@ -235,7 +235,7 @@ class AIService
         }
 
         try {
-            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$this->apiKey}", [
+            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$this->apiKey}", [
                 'contents' => [
                     [
                         'parts' => [

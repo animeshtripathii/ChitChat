@@ -109,7 +109,7 @@ class AdminController extends Controller
                 "You are very welcome! Please let me know if there is anything else I can assist you with. 👍"
             ];
 
-            $models = ['gemini-2.5-flash', 'gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.5-flash'];
+            $models = ['gemini-1.5-flash', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-1.5-flash'];
             $statuses = ['success', 'success', 'success', 'success', 'success', 'success', 'failed', 'success'];
 
             for ($i = 0; $i < 8; $i++) {
@@ -118,7 +118,7 @@ class AdminController extends Controller
                 $status = $statuses[$i];
                 $latency = $status === 'success' ? rand(250, 950) : rand(100, 200);
                 $tokens = rand(80, 650);
-                $cost = ($tokens / 1000) * ($model === 'gemini-2.5-pro' ? 0.00075 : 0.00015);
+                $cost = ($tokens / 1000) * ($model === 'gemini-1.5-pro' ? 0.00075 : 0.00015);
 
                 \App\Models\AILog::create([
                     'user_id' => \App\Models\User::first()->id ?? null,

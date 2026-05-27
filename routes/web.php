@@ -93,7 +93,7 @@ Route::get('/api/ai-diagnostic', function() {
     $startTime = microtime(true);
     
     try {
-        $response = \Illuminate\Support\Facades\Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+        $response = \Illuminate\Support\Facades\Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}", [
             'contents' => [
                 [
                     'parts' => [
@@ -117,7 +117,7 @@ Route::get('/api/ai-diagnostic', function() {
                 'status_code' => $response->status(),
                 'duration_seconds' => $duration,
                 'response_body' => $response->body(),
-                'hint' => 'If the error is about model not found, we may need to adjust the model name (e.g. gemini-2.5-flash or gemini-1.5-flash).'
+                'hint' => 'If the error is about model not found, we may need to adjust the model name (e.g. gemini-1.5-flash or gemini-2.0-flash).'
             ]);
         }
     } catch (\Exception $e) {
