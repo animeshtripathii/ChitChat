@@ -13,7 +13,12 @@ php artisan view:cache
 
 # 2. Run database migrations automatically
 echo "🗄️  Executing database migrations..."
-php artisan migrate --force
+if [ "$DB_FRESH" = "true" ]; then
+    echo "⚠️  Wiping database and running fresh migrations with seeding..."
+    php artisan migrate:fresh --seed --force
+else
+    php artisan migrate --force
+fi
 
 # 3. Create the storage symlink (required for public file access)
 echo "🔗  Linking storage..."
