@@ -1635,6 +1635,7 @@
             otherUserTyping: false,
             typingTimeout: null,
             isTypingState: false,
+            isSending: false,
 
             // Settings states
             settingsTab: 'personal',
@@ -1930,6 +1931,7 @@
             },
 
             pollMessages(conversationId) {
+                if (this.isSending) return;
                 // Fetch messages silently for real-time simulation fallback
                 fetch(`/api/conversations/${conversationId}/messages`)
                     .then(res => res.json())
@@ -2128,6 +2130,8 @@
                 // Clear selected file immediately
                 this.clearSelectedFile();
 
+                this.isSending = true;
+
                 // Send to backend
                 fetch(`/api/conversations/${this.activeChat.id}/messages`, {
                     method: 'POST',
@@ -2156,6 +2160,9 @@
                             this.loadChats(true);
                         }
                     }
+                })
+                .finally(() => {
+                    this.isSending = false;
                 });
 
                 this.sendTypingStatus(false);
