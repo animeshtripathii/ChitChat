@@ -1,6 +1,6 @@
-# 📚 ChatPulse — Documentation Index
+# 📚 ChitChat — Documentation Index
 
-Welcome to the **ChatPulse Technical Documentation**. Each file below covers one core feature area with diagrams, code references, and step-by-step flows.
+Welcome to the **ChitChat Technical Documentation**. Each file below covers one core feature area with diagrams, code references, and step-by-step flows.
 
 ---
 
@@ -13,14 +13,15 @@ Welcome to the **ChatPulse Technical Documentation**. Each file below covers one
 | 3 | [03_reactions_and_ai.md](./03_reactions_and_ai.md) | Emoji reactions, Pin message, Delete for Everyone, Forward — plus all AI features (Auto-Reply, Chugli Bot, Moderation, Smart Reply, AI Logs) |
 | 4 | [04_online_status.md](./04_online_status.md) | Online/offline green dot, Last Seen, Typing indicator, Blue tick read receipts, real-time presence architecture |
 | 5 | [05_admin_panel.md](./05_admin_panel.md) | Admin panel: ban/unban users, ban/unban groups & channels, delete conversations, AI analytics dashboard |
+| 6 | [06_database_schema.md](./06_database_schema.md) | Database schema: migrations breakdown, database tables layout, column fields, and structural relationships |
 
 ---
 
-## 🚀 Quick Start — How ChatPulse Works in 1 Minute
+## 🚀 Quick Start — How ChitChat Works in 1 Minute
 
 ```mermaid
 graph TD
-    A[User opens ChatPulse] --> B[Logs in via Email or OTP]
+    A[User opens ChitChat] --> B[Logs in via Email or OTP]
     B --> C[Dashboard loads with chat list]
     C --> D{What does user do?}
 
@@ -46,8 +47,8 @@ graph TD
 | Backend | Laravel 11 (PHP 8.2) |
 | Frontend | Alpine.js + Blade templates |
 | Styling | Tailwind CSS (CDN) |
-| Database | MySQL |
-| Real-time | Laravel Echo + Pusher (AJAX polling fallback) |
+| Database | PostgreSQL (Production) / SQLite (Development) |
+| Real-time | Laravel Echo + Laravel Reverb WebSockets |
 | File Storage | Cloudinary CDN |
 | AI Engine | Google Gemini 2.5 Flash API |
 | Auth | Laravel Sanctum (token-based) |
@@ -78,3 +79,5 @@ graph TD
 3. Read **03_reactions_and_ai.md** — understand message interactions
 4. Read **02_settings_system.md** — understand user configuration
 5. Read **05_admin_panel.md** — understand platform administration
+6. Read **06_database_schema.md** — understand migrations and schema architecture
+
