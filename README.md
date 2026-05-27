@@ -1,59 +1,137 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 💬 ChitChat — Premium Real-Time AI Chat Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ChitChat is a state-of-the-art, feature-rich real-time messaging application designed with modern aesthetics and intelligent AI features. Built with Laravel 11, TailwindCSS, Alpine.js, and powered by Gemini 2.5 Flash, ChitChat delivers a premium, alive, and interactive user experience.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 💬 Messaging Core
+- **1-on-1 & Group Chats**: Seamlessly start private direct messages or dynamic group conversations.
+- **Broadcast Channels**: Admin-only broadcasting platforms for sending announcements to subscribers.
+- **Message Pinning & Forwarding**: Keep important conversations at the top or forward messages across rooms.
+- **Threaded Replies**: Reply directly to any message to start organized conversation threads.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎭 Reactions & Emoji Integration
+- **Quick Reactions**: Instantly react to messages using a rich popup context bar (`👍` `❤️` `😂` `😮` `😢` `🙏`).
+- **Emoji Picker**: Explore and append a full suite of emojis, optimized with safe HTML-entity decoding for uniform cross-device rendering.
+- **Live Syncing**: Reactions update instantly on both sender and receiver screens without page refreshes.
 
-## Learning Laravel
+### 🤖 AI-Powered Capabilities (Gemini 2.5 Flash)
+- **Auto-Reply Bot**: Enable an AI agent that automatically answers messages on your behalf when you are busy or offline.
+- **Chugli Bot**: A quirky group-chat bot that makes lighthearted gossip or summaries based on recent user updates.
+- **Smart Replies**: Contextual suggestion bubbles appearing under messages to facilitate quick, one-click replies.
+- **Automated Content Moderation**: An event-driven listener intercepts messages and utilizes AI to flag and blur toxic or inappropriate content.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 🟢 Presence & Statuses
+- **Real-Time Online Presence**: Live green dot indicators show when users are actively online using WebSocket heartbeats.
+- **Temporary Statuses**: Share what you are up to with custom, rich status updates that automatically expire and prune after 24 hours.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🛡️ Admin Control Center
+- **Banning & Unbanning**: Ban toxic users instantly to restrict access.
+- **Conversation Management**: Oversee and delete group chats or public channels.
+- **AI Analytics**: Track AI usage logs, moderation triggers, and performance statistics directly from the admin dashboard.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Technology Stack
 
-### Premium Partners
+- **Framework**: Laravel 11 (PHP 8.2+)
+- **Frontend Logic**: Alpine.js & TailwindCSS
+- **Database**: PostgreSQL (Production) / SQLite (Local Development)
+- **Real-Time Broadcasting**: Laravel Reverb (WebSockets)
+- **Asset Bundler**: Vite
+- **Media CDN**: Cloudinary
+- **Large Language Model (LLM)**: Gemini 2.5 Flash API
+- **Queue Worker**: Redis (Production) / Database (Local)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🚀 Local Installation & Setup
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Follow these steps to run ChitChat locally:
 
-## Code of Conduct
+### 1. Clone & Install Dependencies
+```bash
+git clone https://github.com/animeshtripathii/ChitChat.git
+cd ChitChat
+composer install
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Environment Configuration
+Copy the sample environment file:
+```bash
+cp .env.example .env
+```
+Open `.env` and fill in your keys:
+- **Database Connection** (SQLite or MySQL/PostgreSQL)
+- **Cloudinary Keys**: `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+- **Gemini API Key**: `GEMINI_API_KEY`
+- **Broadcasting**: Set `BROADCAST_CONNECTION=reverb`
 
-## Security Vulnerabilities
+Generate the application key:
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3. Run Migrations & Seed Database
+Initialize your tables and generate demo accounts (including admins, users, and pre-populated conversations):
+```bash
+php artisan migrate --seed
+```
 
-## License
+### 4. Build Assets & Start Servers
+Start the Vite asset development server:
+```bash
+npm run dev
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+In a new terminal window, start the Laravel local server:
+```bash
+php artisan serve
+```
+
+In a third terminal window, start the Laravel Reverb WebSocket server to enable instant messaging:
+```bash
+php artisan reverb:start
+```
+
+If you use queues locally for AI moderation/jobs, run:
+```bash
+php artisan queue:work
+```
+
+---
+
+## 🧪 Testing Suite
+
+ChitChat includes a comprehensive feature test suite validating authorization, group management, media uploads, AI integrations, settings, and general messaging features.
+
+To run the automated tests:
+```bash
+php artisan test
+```
+
+---
+
+## ☁️ Deployment on Render
+
+This project is pre-configured for a smooth single-click deployment to **Render** using Docker and the included infrastructure blueprints.
+
+### Setup using Blueprint (`render.yaml`)
+1. Create a new **Blueprint** on your Render Dashboard.
+2. Link your ChitChat repository.
+3. Render will auto-provision:
+   - **PostgreSQL Database** (`chitchat-db`)
+   - **Redis Cache & Queue Store** (`chitchat-redis`)
+   - **Laravel App Container** (`chitchat-app`)
+4. Fill in the following environment secrets in your Render App dashboard:
+   - `GEMINI_API_KEY` (Your Gemini developer key)
+   - `CLOUDINARY_API_SECRET` (Your Cloudinary API secret)
+5. Deploy! The custom Docker setup (`Dockerfile` & `start.sh`) will automatically handle database migrations, cache optimization, and run the background queue processes alongside the web server.
+
+---
+
+## 📄 License
+ChitChat is open-sourced software licensed under the [MIT license](LICENSE).
