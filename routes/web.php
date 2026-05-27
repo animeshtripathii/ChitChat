@@ -76,3 +76,55 @@ Route::middleware(['auth', 'banned.block'])->group(function () {
 
 // Public API checks (accessible by guests and auth users)
 Route::get('/api/check-unique', [AuthController::class, 'checkUnique'])->name('api.check-unique');
+
+Route::get('/api/ai-diagnostic', function() {
+    $apiKey = config('services.gemini.api_key');
+    if (!$apiKey) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'API Key is null or empty. Please check your GEMINI_API_KEY environment variable on Render.',
+            'raw_config_value' => config('services.gemini.api_key'),
+            'env_value_directly' => env('GEMINI_API_KEY'),
+        ]);
+    }
+    
+    // Attempt to make a simple request to Gemini API
+    $prompt = "Hello, write 'hello' back.";
+    $startTime = microtime(true);
+    
+    try {
+        $response = \Illuminate\Support\Facades\Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+            'contents' => [
+                [
+                    'parts' => [
+                        ['text' => $prompt]
+                    ]
+                ]
+            ]
+        ]);
+        
+        $duration = microtime(true) - $startTime;
+        
+        if ($response->successful()) {
+            return response()->json([
+                'status' => 'success',
+                'duration_seconds' => $duration,
+                'response_data' => $response->json(),
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'api_error',
+                'status_code' => $response->status(),
+                'duration_seconds' => $duration,
+                'response_body' => $response->body(),
+                'hint' => 'If the error is about model not found, we may need to adjust the model name (e.g. gemini-2.5-flash or gemini-1.5-flash).'
+            ]);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'exception',
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+        ]);
+    }
+});
